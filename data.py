@@ -18,7 +18,7 @@ BACKUP_NAME =  BACKUP_PATH+'/sauvegarde'+str(BACKUP_DATE)
 bucket = "YOUR BUCKET"
 ROOTDIR = '/usr/local/bin/'
 
-#####Regex pour recuperer les infos de connexion a la base de donnee #######
+#####Regex to get back login information to Database #######
 
 def WPregex(HOMEPATH):
     wpconfigfile = os.path.normpath(HOMEPATH +"/wp-config.php")
@@ -38,7 +38,7 @@ def WPregex(HOMEPATH):
                 'host':host
                 }  
 
-##### Creation du dump MariaDB  ########
+##### Create MariaDB BUMP ########
 
 def WPDBDump(db_details):
     
@@ -53,7 +53,7 @@ def WPDBDump(db_details):
     print('Dump OK ..')
     return(BACKUP_NAME_SQL)
         
-#######Compression des fichiers ############
+#######File Compressed ############
 def WPBackupTar(HOMEPATH,BACKUP_BDD):
     
     backup_bz2 = tarfile.open(BACKUP_PATH+'/sauvegarde'+str(BACKUP_DATE)+'.tar.bz2','w:bz2') # Emplacement de sauvegarde du fichier compresse (tar.bz2)
@@ -63,7 +63,7 @@ def WPBackupTar(HOMEPATH,BACKUP_BDD):
     print('zip ok')
     return(backup_bz2)
     
-########Copie des fichier vers S3########
+######## File COpie to S3 ########
 def CopietoS3(bz2FILE):
    
     cmd = "{}aws s3 cp {} s3://{}/ ".format(\
@@ -72,7 +72,7 @@ def CopietoS3(bz2FILE):
     print('Fichier',bz2FILE,'est uploade')
     return(bz2FILE)
         
-#########Verification presence du  fichier sur AWS S3############
+#########Verify file in AWS S3############
 def veriftoS3(bz2FILE):
     
     s3 = boto3.resource('s3')
@@ -80,7 +80,7 @@ def veriftoS3(bz2FILE):
     file_bucket = s3.ObjectSummary(my_bucket,bz2FILE)
     return (file_bucket)
    
-######### Supression fichier Local si presence sur Aws ############
+######### Remove LOCAL File in Homepath ############
 def Fileremove(bz2FILE,BACKUP_BDD,veriftoS3):
     try:
        veriftoS3
@@ -93,9 +93,9 @@ def Fileremove(bz2FILE,BACKUP_BDD,veriftoS3):
         print('fichier local supprime')
 
 
-####### Code Principal ################
+####### Main Code ################
 print ('##################### Backup running...###########################')
-####### Verifier si le chemin existe ou non ################
+####### Check if the path existing ################
 
 if os.path.isdir(HOMEPATH):
     print("Le Dossier",HOMEPATH, "existe")
@@ -111,7 +111,7 @@ if os.path.isdir(HOMEPATH):
     CopietoS3(bz2FILE)
     print ('##################### Verification des fichiers sur AWS ###########################')
     veriftoS3(bz2FILE)
-    time.sleep(8) # temps d'attente pour etre sur que la copie soit faite
+    time.sleep(8) # Waiting time to check the copy before file remove
     remove_on = veriftoS3(bz2FILE)
     print ('##################### Supression fichier Local###########################')
     Fileremove(bz2FILE,BACKUP_BDD,veriftoS3)
