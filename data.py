@@ -11,11 +11,11 @@ import time
 from boto3 import client
 from botocore.exceptions import ClientError
 
-HOMEPATH = '/var/www/html/wordpress/'
+HOMEPATH = 'YOUR WORDPRESS SITE FOLDER'
 BACKUP_DATE = datetime.datetime.now().strftime("%d-%m-%Y-%H:%M:%S")
-BACKUP_PATH = '/root/Documents/Sauvegarde/'
+BACKUP_PATH = 'YOUR LOCAL SAVE FOLDER'
 BACKUP_NAME =  BACKUP_PATH+'/sauvegarde'+str(BACKUP_DATE)
-bucket = "sauv-ws-project-aic"
+bucket = "YOUR BUCKET"
 ROOTDIR = '/usr/local/bin/'
 
 #####Regex pour recuperer les infos de connexion a la base de donnee #######
