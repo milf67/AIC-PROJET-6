@@ -1,6 +1,6 @@
 # AIC-PROJET-6
 
-Script to Save wordpress site to AWS S3
+Script de Sauvegarde de votre serveur Wordpress et sa base de Donnée vers AWS S3
 
 Le script permet de sauvegarder le dossier d'installation de wordpress en entier ainsi que le dump de la base de donnée Wordpress sur MariaDB
 Les fichiers sont compresser en Bz2
@@ -11,7 +11,7 @@ Il y'a une fonction pour chaque élément, si un élément ne vous intéresse pa
 Il y'a une fonction REgex qui permet de lancer le script sans rentrer d'identifiant ROOT pour le dump MYSQL.
 (Important l'user de la base de donnée doit avoir les droits nécessaire pour faire le dump).
 
-Script to Save wordpress site to AWS S3
+Script to Save wordpress site and a MYSQL DUMP to AWS S3
 
 The script saves the all files in Wordpress installation folder and the Wordpress database dump to MariaDB.
 Files are compressed in Bz2
