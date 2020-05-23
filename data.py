@@ -3,8 +3,11 @@
 #"""Data.py: Description """            
 
 __author__      = "toto6712"
-__version__     = "1.0"
+__version__     = "1.0.1"
 ___date____     = "22/05/20"
+
+__Modification du code V1.0
+Ajout de la variable.ROOTDIR pour exécution du script avec Crontab
 
 ##########################################################################
 
@@ -111,7 +114,6 @@ if os.path.isdir(HOMEPATH):
     print ('##################### Requete regex BDD ###########################')
     DBINFO = WPregex(HOMEPATH)
     print ('##################### Dump BDD ###########################')
-    WPDBDump(DBINFO)
     BACKUP_BDD = WPDBDump(DBINFO)
     print ('##################### ZIP des deux fichier ###########################')
     WPBackupTar(HOMEPATH,BACKUP_BDD)
