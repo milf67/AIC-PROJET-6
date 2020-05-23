@@ -5,19 +5,15 @@ __________________________________________________________________
 ## Script de Sauvegarde de votre serveur Wordpress et sa base de Donnée vers AWS S3 #
 
 Le script permet de sauvegarder le dossier d'installation de wordpress en entier ainsi que le dump de la base de donnée Wordpress sur MariaDB
-Les fichiers sont compresser en Bz2
-Il copie d'abord les fichiers en local sur la machine puis upload les fichiers sur le bucket AWS S3 choisis
-Une vérification des fichiers sur AWS S3 est faites, ensuite les fichiers en local sont supprimé !!
-
-Il y'a une fonction pour chaque élément, si un élément ne vous intéresse pas n'utilisé pas la fonction.
-Il y'a une fonction REgex qui permet de lancer le script sans rentrer d'identifiant ROOT pour le dump MYSQL.
 
 __________________________________________________________________
 # Prérequis                                                      #
 __________________________________________________________________
 
-## Python   
-Version recommandée : 3.7.7   https://www.python.org/downloads/release/python-377/
+## Python ; Debian ; MariaDB
+Version Python recommandée : 3.7.7   https://www.python.org/downloads/release/python-377/
+Version Debian Utilisé     : 10.4.0  https://www.debian.org/distrib/netinst
+Version MariaDB Utilisé    :
 
 ## Modules utilisés    
  os
@@ -33,13 +29,32 @@ Version recommandée : 3.7.7   https://www.python.org/downloads/release/python-3
 Installation du module AWS CLI version 2 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
 
 ###### aws configure
--AWS Access Key ID [None]: XXXXX
--AWS Secret Access Key [None]:XXXXXXXX
--Default region name [None]: XXXXXX
--Default output format [None]: XXXXX
+Modifier le fichier de configuration AWS avec la commande suivante dans une distribution Linux
+> $ aws configure 
 
+- AWS Access Key ID [None]: VOTRE ID
+- AWS Secret Access Key [None]:VOTRE KEY
+- Default region name [None]: 
+- Default output format [None]: 
 
+## MariaDB
+- Création d'un utilisateur avec les droits pour effectuer le dump de la base de donnée du site wordpress
+- Pas de chiffrement des credentials __ATTENTION AUX DROITS__ donnés
 
+###### Création d'un bucket sur AWS S3
+
+Suivre la documentation AWS https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/user-guide/create-bucket.html 
+
+__________________________________________________________________
+# Exécution du script                                                  #
+__________________________________________________________________
+## Variable à modifier 
+
+- HOMEPATH = 'Dossier de votre site Wordpress'
+- BACKUP_PATH = 'chemin de votre dossier de sauvegarde'
+- bucket = "le nom de votre bucket"
+
+Le script exécute toute les fonctions  présente dans le code principal
 
 
 Script to Save wordpress site and a MYSQL DUMP to AWS S3
