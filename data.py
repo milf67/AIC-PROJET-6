@@ -7,6 +7,7 @@ __version__     = "1.0"
 ___date____     = "22/05/20"
 
 ##########################################################################
+
 import os
 import sys
 import re
@@ -17,7 +18,7 @@ import logging
 import boto3
 import time
 from boto3 import client
-from botocore.exceptions import ClientError
+
 
 HOMEPATH = 'YOUR WORDPRESS SITE FOLDER'
 BACKUP_DATE = datetime.datetime.now().strftime("%d-%m-%Y-%H:%M:%S")
