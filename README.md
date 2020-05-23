@@ -48,23 +48,27 @@ Suivre la documentation AWS https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/us
 __________________________________________________________________
 # Exécution du script                                                  #
 __________________________________________________________________
+
 ## Variable à modifier 
 
 - HOMEPATH = 'Dossier de votre site Wordpress'
 - BACKUP_PATH = 'chemin de votre dossier de sauvegarde'
 - bucket = "le nom de votre bucket"
 
-Le script exécute toute les fonctions  présente dans le code principal
+## Exécution
+- Le script exécute vérifie la présense du dossier Wordpress puis éxécute toute les fonctions dans le code principal.(Fontion supprimable à souhait)
+> /.../.\data.py
+
+## Particularité du script
 
 
-Script to Save wordpress site and a MYSQL DUMP to AWS S3
+  - Expréssion Regulière pour extraire les idenfiants permettant le dump de la BDD
+    > def WPregex(HOMEPATH):
+  - Compréssion des fichiers à sauvegarder en tar.Bz2
+    > def WPBackupTar
+  - Temps d'attente entre l'éxécution de la fonction de suppréssion et l'upload sur S3 (L122)
+    - Cela permet d'assurer que l'upload est bien fini avant de le tester ( temps modifiable a souhait en fonction de la taille           des fichiers
+      
 
-The script saves the all files in Wordpress installation folder and the Wordpress database dump to MariaDB.
-Files are compressed in Bz2
-It first copies the files locally to the machine and then uploads the files to the selected AWS S3 bucket.
-A file check on AWS S3 is done, then local files are deleted !
 
-There is a function for each item, if you are not interested for all item don't use the function.
-There is a REgex function that allows you to launch the script without entering a ROOT ID for the MYSQL dump.
-(Important the user of the database must have the necessary rights to do the dump).
 
