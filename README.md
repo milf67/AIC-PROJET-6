@@ -30,13 +30,13 @@ Version recommandée : 3.7.7   https://www.python.org/downloads/release/python-3
  time 
  
 ## Configuration AWS S3
-Installation du module AWS CLI version 2 __https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html__
+Installation du module AWS CLI version 2 https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html
 
 ###### aws configure
-AWS Access Key ID [None]: XXXXX
-AWS Secret Access Key [None]:XXXXXXXX
-Default region name [None]: XXXXXX
-Default output format [None]: XXXXX
+-AWS Access Key ID [None]: XXXXX
+-AWS Secret Access Key [None]:XXXXXXXX
+-Default region name [None]: XXXXXX
+-Default output format [None]: XXXXX
 
 
 
