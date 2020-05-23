@@ -58,7 +58,7 @@ __________________________________________________________________
 
 ## Exécution
 - Le script exécute vérifie la présense du dossier Wordpress puis éxécute toute les fonctions dans le code principal.(Fontion supprimable à souhait)
-> /.../.\data.py
+  > /.../.\data.py
 
 ## Particularité du script
 
