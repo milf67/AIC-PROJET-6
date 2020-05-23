@@ -11,9 +11,9 @@ __________________________________________________________________
 __________________________________________________________________
 
 ## Python ; Debian ; MariaDB
-Version Python recommandée : 3.7.7   https://www.python.org/downloads/release/python-377/
-Version Debian Utilisé     : 10.4.0  https://www.debian.org/distrib/netinst
-Version MariaDB Utilisé    : 10.4    https://go.mariadb.com/
+- Version Python recommandée : 3.7.7   https://www.python.org/downloads/release/python-377/
+- Version Debian Utilisé     : 10.4.0  https://www.debian.org/distrib/netinst
+- Version MariaDB Utilisé    : 10.4    https://go.mariadb.com/
 
 ## Modules utilisés    
  os
