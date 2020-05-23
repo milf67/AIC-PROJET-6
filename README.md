@@ -1,6 +1,8 @@
-# AIC-PROJET-6
+__________________________________________________________________
+# Projet 6 : Participez à la vie de la communauté Open Source    #
+__________________________________________________________________
 
-Script de Sauvegarde de votre serveur Wordpress et sa base de Donnée vers AWS S3
+## Script de Sauvegarde de votre serveur Wordpress et sa base de Donnée vers AWS S3 #
 
 Le script permet de sauvegarder le dossier d'installation de wordpress en entier ainsi que le dump de la base de donnée Wordpress sur MariaDB
 Les fichiers sont compresser en Bz2
@@ -9,7 +11,36 @@ Une vérification des fichiers sur AWS S3 est faites, ensuite les fichiers en lo
 
 Il y'a une fonction pour chaque élément, si un élément ne vous intéresse pas n'utilisé pas la fonction.
 Il y'a une fonction REgex qui permet de lancer le script sans rentrer d'identifiant ROOT pour le dump MYSQL.
-(Important l'user de la base de donnée doit avoir les droits nécessaire pour faire le dump).
+
+__________________________________________________________________
+# Prérequis                                                      #
+__________________________________________________________________
+
+## Python   
+Version recommandée : 3.7.7   https://www.python.org/downloads/release/python-377/
+
+## Modules utilisés    
+ os
+ sys
+ re
+ subprocess
+ tarfile
+ datetime
+ boto3
+ time 
+ 
+## Configuration AWS S3
+Installation du module AWS CLI version 2 __https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html__
+
+###### aws configure
+AWS Access Key ID [None]: XXXXX
+AWS Secret Access Key [None]:XXXXXXXX
+Default region name [None]: XXXXXX
+Default output format [None]: XXXXX
+
+
+
+
 
 Script to Save wordpress site and a MYSQL DUMP to AWS S3
 
