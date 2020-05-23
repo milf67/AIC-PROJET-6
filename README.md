@@ -37,13 +37,14 @@ Modifier le fichier de configuration AWS avec la commande suivante dans une dist
 - Default region name [None]: 
 - Default output format [None]: 
 
-## MariaDB
-- Création d'un utilisateur avec les droits pour effectuer le dump de la base de donnée du site wordpress
-- Pas de chiffrement des credentials __ATTENTION AUX DROITS__ donnés
-
 ###### Création d'un bucket sur AWS S3
 
 Suivre la documentation AWS https://docs.aws.amazon.com/fr_fr/AmazonS3/latest/user-guide/create-bucket.html 
+
+
+## MariaDB
+- Création d'un utilisateur avec les droits pour effectuer le dump de la base de donnée du site wordpress
+- Pas de chiffrement des credentials __ATTENTION AUX DROITS__ donnés
 
 __________________________________________________________________
 # Exécution du script                                                  #
