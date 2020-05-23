@@ -1,6 +1,6 @@
 #!/bin/python  
 ###########################################################################
-#"""Data.py: Description of what foobar does."""            
+#"""Data.py: Description """            
 
 __author__      = "toto6712"
 __version__     = "1.0"
