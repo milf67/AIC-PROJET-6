@@ -66,7 +66,7 @@ __________________________________________________________________
     > def WPregex(HOMEPATH):
   - Compréssion des fichiers à sauvegarder en tar.Bz2
     > def WPBackupTar
-  - Temps d'attente entre l'éxécution de la fonction de suppréssion des fichiers local et l'upload sur S3 (*L122*)
+  - Temps d'attente entre l'éxécution de la fonction de suppréssion des fichiers local et l'upload sur S3 (*L125*)
     - Cela permet d'assurer que l'upload est bien fini avant de le tester ( *temps modifiable a souhait en fonction de la taille         des fichiers*)
       
 
