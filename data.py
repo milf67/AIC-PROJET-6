@@ -22,7 +22,7 @@ import boto3
 import time
 from boto3 import client
 
-
+##### Variable Initialisation #######
 HOMEPATH = 'YOUR WORDPRESS SITE FOLDER'
 BACKUP_DATE = datetime.datetime.now().strftime("%d-%m-%Y-%H:%M:%S")
 BACKUP_PATH = 'YOUR LOCAL SAVE FOLDER'
@@ -30,16 +30,16 @@ BACKUP_NAME =  BACKUP_PATH+'/sauvegarde'+str(BACKUP_DATE)
 bucket = "YOUR BUCKET"
 ROOTDIR = '/usr/local/bin/'
 
-#####Regex to get back login information to Database #######
+##### Regex to get back login information to Database #######
 
 def WPregex(HOMEPATH):
     wpconfigfile = os.path.normpath(HOMEPATH +"/wp-config.php")
     with open(wpconfigfile) as fh:
         wpconfigcontent=fh.read()   
-    regex_db = r'define\(\s*?\'DB_NAME\'\s*?,\s*?\'(?P<DB>.*?)\'\s*?\);'
-    regex_user = r'define\(\s*?\'DB_USER\'\s*?,\s*?\'(?P<USER>.*?)\'\s*?\);'
-    regex_pass = r'define\(\s*?\'DB_PASSWORD\'\s*?,\s*?\'(?P<PASSWORD>.*?)\'\s*?\);'
-    regex_host = r'define\(\s*?\'DB_HOST\'\s*?,\s*?\'(?P<HOST>.*?)\'\s*?\);'         
+    regex_db = r'define\(\s*?\'DB_NAME\'\s*?,\s*?\'(?P<DB>.*?)\'\s*?\);' # Regex to extract db name info
+    regex_user = r'define\(\s*?\'DB_USER\'\s*?,\s*?\'(?P<USER>.*?)\'\s*?\);'# Regex to extract db user
+    regex_pass = r'define\(\s*?\'DB_PASSWORD\'\s*?,\s*?\'(?P<PASSWORD>.*?)\'\s*?\);'# Regex to extract db password
+    regex_host = r'define\(\s*?\'DB_HOST\'\s*?,\s*?\'(?P<HOST>.*?)\'\s*?\);'         # Regex to extract db host
     database = re.search(regex_db,wpconfigcontent).group('DB')
     user = re.search(regex_user,wpconfigcontent).group('USER')
     password = re.search(regex_pass,wpconfigcontent).group('PASSWORD')
@@ -58,7 +58,7 @@ def WPDBDump(db_details):
     DBPASSWORD = db_details['password']
     DBHOST = db_details['host']
     DBNAME = db_details['database']
-    BACKUP_NAME_SQL = os.path.normpath(os.path.join(BACKUP_PATH+'/sauvegarde'+str(BACKUP_DATE)+'.sql')) 
+    BACKUP_NAME_SQL = os.path.normpath(os.path.join(BACKUP_PATH+'/sauvegarde'+str(BACKUP_DATE)+'.sql')) # definition name of backup
     cmd = "mysqldump -h{} -u{} -p{} {} > {} ".format(\
         DBHOST, USER, DBPASSWORD, DBNAME, BACKUP_NAME_SQL)
     subprocess.check_output(cmd,shell=True)
@@ -68,7 +68,7 @@ def WPDBDump(db_details):
 #######File Compressed ############
 def WPBackupTar(HOMEPATH,BACKUP_BDD):
     
-    backup_bz2 = tarfile.open(BACKUP_PATH+'/sauvegarde'+str(BACKUP_DATE)+'.tar.bz2','w:bz2') # Emplacement de sauvegarde du fichier compresse (tar.bz2)
+    backup_bz2 = tarfile.open(BACKUP_PATH+'/sauvegarde'+str(BACKUP_DATE)+'.tar.bz2','w:bz2') # path of  local save folder (tar.bz2)
     backup_bz2.add(HOMEPATH)
     backup_bz2.add(BACKUP_BDD)
     backup_bz2.close()
@@ -79,7 +79,7 @@ def WPBackupTar(HOMEPATH,BACKUP_BDD):
 def CopietoS3(bz2FILE):
    
     cmd = "{}aws s3 cp {} s3://{}/ ".format(\
-       ROOTDIR, bz2FILE, bucket)
+       ROOTDIR, bz2FILE, bucket) # Shell cmd to updload the file in AWS S3
     subprocess.check_output(cmd,shell=True)
     print('Fichier',bz2FILE,'est uploade')
     return(bz2FILE)
